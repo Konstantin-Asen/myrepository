@@ -1,0 +1,142 @@
+#include <iostream>
+using namespace std;
+const int MAX_ROW = 3;
+const int MAX_COL = 4;
+void input(int[][MAX_COL], int, int);
+void output(int[][MAX_COL], int, int);
+int sum(int[][MAX_COL], int, int);
+int pos_product(int[][MAX_COL], int, int);
+int neg_count(int[][MAX_COL], int, int);
+void print(int[], int);
+int div_by_5(int[][MAX_COL], int, int, int[]);
+void max_row(int[][MAX_COL], int, int, int[]);
+void min_col(int[][MAX_COL], int, int, int[]);
+void main()
+{
+	int a[MAX_ROW][MAX_COL];
+	int b[(MAX_ROW*MAX_COL)];
+	int c[MAX_ROW];
+	int d[MAX_COL];
+	input(a, MAX_ROW, MAX_COL);
+	output(a, MAX_ROW, MAX_COL);
+	cout << "The sum of all elements: " << sum(a, MAX_ROW, MAX_COL) << endl;
+	cout << "The product of positive elements: " << pos_product(a, MAX_ROW, MAX_COL) << endl;
+	cout << "The number of negative elements: " << neg_count(a, MAX_ROW, MAX_COL) << endl;
+	int size_b = div_by_5(a, MAX_ROW, MAX_COL, b);
+	cout << "All elements divisible by 5:" << endl;
+	print(b, size_b);
+	max_row(a, MAX_ROW, MAX_COL, c);
+	cout << "The biggest elements of each row:" << endl;
+	print(c, MAX_ROW);
+	min_col(a, MAX_ROW, MAX_COL, d);
+	cout << "The smallest elements of each column:" << endl;
+	print(d, MAX_COL);
+}
+void input(int arr[][MAX_COL], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "Element[" << (i + 1) << "][" << (j + 1) << "] = ";
+			cin >> arr[i][j];
+		}
+	}
+}
+void output(int arr[][MAX_COL], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "\t" << arr[i][j];
+		}
+		cout << endl;
+	}
+}
+int sum(int arr[][MAX_COL], int row, int col)
+{
+	int sum_var = 0;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			sum_var += arr[i][j];
+		}
+	}
+	return sum_var;
+}
+int pos_product(int arr[][MAX_COL], int row, int col)
+{
+	int prod_var = 1;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] > 0) prod_var *= arr[i][j];
+		}
+	}
+	return prod_var;
+}
+int neg_count(int arr[][MAX_COL], int row, int col)
+{
+	int count_var = 0;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] < 0) count_var++;
+		}
+	}
+	return count_var;
+}
+void print(int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+}
+int div_by_5(int arr[][MAX_COL], int row, int col, int arr_result[])
+{
+	int size = 0;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] % 5 == 0)
+			{
+				arr_result[size] = arr[i][j];
+				size++;
+			}
+		}
+	}
+	return size;
+}
+void max_row(int arr[][MAX_COL], int row, int col, int arr_result[])
+{
+	int max;
+	for (int i = 0; i < row; i++)
+	{
+		max = arr[i][0];
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] > max) max = arr[i][j];
+		}
+		arr_result[i] = max;
+	}
+}
+void min_col(int arr[][MAX_COL], int row, int col, int arr_result[])
+{
+	int min;
+	for (int j = 0; j < col; j++)
+	{
+		min = arr[0][j];
+		for (int i = 0; i < row; i++)
+		{
+			if (arr[i][j] < min) min = arr[i][j];
+		}
+		arr_result[j] = min;
+	}
+}
