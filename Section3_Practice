@@ -1,0 +1,102 @@
+package section3_practicetask;
+import javax.swing.JOptionPane;
+public class Section3_PracticeTask {
+    public static void main(String[] args) {
+        JOptionPane.showMessageDialog(null,
+                "Welcome to the user-created Java Libs game! Please, answer all"
+                        +" of the 10 questions.\nIn the end, a summary of your"
+                        +" answers will appear. Have fun!",
+                "Introduction",
+                1);
+        String input1=(String)JOptionPane.showInputDialog(null,
+                "What is your name?",
+                "Question #1",
+                3,
+                null,
+                null,
+                "Type something here...");
+        String input_age_string=(String)JOptionPane.showInputDialog(null,
+                "How old are you?",
+                "Question #2",
+                3,
+                null,
+                null,
+                "Use an integer...");
+        int input2=Integer.parseInt(input_age_string);
+        String[] acceptableValues_food={"Pizza","Sausages","Fish"};
+        String input3=(String)JOptionPane.showInputDialog(null,
+                "Which of the following is your favourite?",
+                "Question #3",
+                3,
+                null,
+                acceptableValues_food,
+                acceptableValues_food[1]);
+        String input4=(String)JOptionPane.showInputDialog(null,
+                "Do you usually wear jeans, shorts, or trousers?",
+                "Question #4",
+                3,
+                null,
+                null,
+                "Use lowercase letters...");
+        String input_clothes_string=(String)JOptionPane.showInputDialog(null,
+                "How many pairs of "+input4+" do you own?",
+                "Question #5",
+                3,
+                null,
+                null,
+                "Use an integer...");
+        int input5=Integer.parseInt(input_clothes_string);
+        String input_price_string=(String)JOptionPane.showInputDialog(null,
+                "How much does one pair of "+input4+" cost (e.g. 9.99)?",
+                "Question #6",
+                3,
+                null,
+                null,
+                "Use a decimal point...");
+        double input6=Double.parseDouble(input_price_string);
+        String[] acceptableValues_animal={"Dog","Cat","Rabbit"};
+        String input7=(String)JOptionPane.showInputDialog(null,
+                "Which of these do you like the most?",
+                "Question #7",
+                3,
+                null,
+                acceptableValues_animal,
+                acceptableValues_animal[1]);
+        String input8=(String)JOptionPane.showInputDialog(null,
+                "What is your favourite day of the week?",
+                "Question #8",
+                3,
+                null,
+                null,
+                "Use a capital letter...");
+        String input9=(String)JOptionPane.showInputDialog(null,
+                "What is the name of your school?",
+                "Question #9",
+                3,
+                null,
+                null,
+                "Use proper capitalization...");
+        String input_school_string=(String)JOptionPane.showInputDialog(null,
+                "How many years have you studied in the "+input9+"?",
+                "Question #10",
+                3,
+                null,
+                null,
+                "Use an integer...");
+        int input10=Integer.parseInt(input_school_string);
+        JOptionPane.showMessageDialog(null,
+                "Thank you for your participation! Here are the results:\n\n"
+                        +"You, "+input1+", are my new friend.\nYou are "+input2
+                        +" years old.\nYou like eating "+input3+", and you usually"
+                        +" wear "+input4+".\nIn your closet, there are "+input5
+                        +" pairs of "+input4+".\nSince the price of a single pair"
+                        +" is "+input6+"$, you have paid "+(input5*input6)+"$"
+                        +" for your "+input4+".\nYour favourite animal is the "
+                        +input7+", and you like "+input8+" the most.\nRegarding your"
+                        +" education, you attend the "+input9+", and you have spent "
+                        +input10+" years there.\nI am honored to meet you and"
+                        +" cannot wait to learn more about you!",
+                "Final Message",
+                1);
+    }
+}
