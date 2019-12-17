@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+const int MAX_ROW = 5;
+const int MAX_COL = 3;
+void input(int[][MAX_COL], int, int);
+void output(int[][MAX_COL], int, int);
+void print(int[], int);
+int in_range(int[][MAX_COL], int, int, int, int, int[]);
+int out_range(int[][MAX_COL], int, int, int, int, int[]);
+void main()
+{
+	int M[MAX_ROW][MAX_COL];
+	int A;
+	int B;
+	int vin[(MAX_ROW * MAX_COL)];
+	int vout[(MAX_ROW * MAX_COL)];
+	input(M, MAX_ROW, MAX_COL);
+	output(M, MAX_ROW, MAX_COL);
+	cout << "Enter lower boundary: ";
+	cin >> A;
+	cout << "Enter upper boundary: ";
+	cin >> B;
+	int size_vin = in_range(M, MAX_ROW, MAX_COL, A, B, vin);
+	cout << "All elements within the range [" << A << "; " << B << "]:" << endl;
+	print(vin, size_vin);
+	int size_vout = out_range(M, MAX_ROW, MAX_COL, A, B, vout);
+	cout << "All elements outside the range [" << A << "; " << B << "]:" << endl;
+	print(vout, size_vout);
+}
+void input(int arr[][MAX_COL], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "Element[" << (i + 1) << "][" << (j + 1) << "] = ";
+			cin >> arr[i][j];
+		}
+	}
+}
+void output(int arr[][MAX_COL], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "\t" << arr[i][j];
+		}
+		cout << endl;
+	}
+}
+void print(int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+}
+int in_range(int arr[][MAX_COL], int row, int col, int low_bound, int up_bound, int arr_result[])
+{
+	int size = 0;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] >= low_bound && arr[i][j] <= up_bound)
+			{
+				arr_result[size] = arr[i][j];
+				size++;
+			}
+		}
+	}
+	return size;
+}
+int out_range(int arr[][MAX_COL], int row, int col, int low_bound, int up_bound, int arr_result[])
+{
+	int size = 0;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] < low_bound || arr[i][j] > up_bound)
+			{
+				arr_result[size] = arr[i][j];
+				size++;
+			}
+		}
+	}
+	return size;
+}
