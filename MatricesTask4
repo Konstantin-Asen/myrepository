@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+const int MAX_ROW = 3;
+const int MAX_COL = 4;
+void input(int[][MAX_COL], int, int);
+void output(int[][MAX_COL], int, int);
+void addition(int[][MAX_COL], int[][MAX_COL], int, int, int[][MAX_COL]);
+void main()
+{
+	int a[MAX_ROW][MAX_COL];
+	int b[MAX_ROW][MAX_COL];
+	int c[MAX_ROW][MAX_COL];
+	cout << "FIRST MATRIX:" << endl;
+	input(a, MAX_ROW, MAX_COL);
+	output(a, MAX_ROW, MAX_COL);
+	cout << "\nSECOND MATRIX:" << endl;
+	input(b, MAX_ROW, MAX_COL);
+	output(b, MAX_ROW, MAX_COL);
+	addition(a, b, MAX_ROW, MAX_COL, c);
+	cout << "\nRESULTING MATRIX:" << endl;
+	output(c, MAX_ROW, MAX_COL);
+}
+void input(int arr[][MAX_COL], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "Element[" << (i + 1) << "][" << (j + 1) << "] = ";
+			cin >> arr[i][j];
+		}
+	}
+}
+void output(int arr[][MAX_COL], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "\t" << arr[i][j];
+		}
+		cout << endl;
+	}
+}
+void addition(int arr_1[][MAX_COL], int arr_2[][MAX_COL], int row, int col, int arr_result[][MAX_COL])
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			arr_result[i][j] = (arr_1[i][j] + arr_2[i][j]);
+		}
+	}
+}
