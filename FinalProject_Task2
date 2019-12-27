@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+const int N = 10;
+const int M = 10;
+void input(int[][M], int, int);
+void output(int[][M], int, int);
+int prodInRange(int[][M], int, int, int, int);
+int sumInRange3(int[][M], int, int, int, int);
+void main()
+{
+	int n, m, p, q;
+	int A[N][M];
+	do
+	{
+		cout << "Enter number of rows [1; 10]: ";
+		cin >> n;
+	} while (n < 1 || n > 10);
+	do
+	{
+		cout << "Enter number of columns [1; 10]: ";
+		cin >> m;
+	} while (m < 1 || m > 10);
+	input(A, n, m);
+	output(A, n, m);
+	cout << "Enter lower boundary: ";
+	cin >> p;
+	do
+	{
+		cout << "Enter upper boundary: ";
+		cin >> q;
+	} while (q < p);
+	cout << "Product of elements within the interval [" << p << "; " << q << "] = " << prodInRange(A, n, m, p, q) << endl;
+	cout << "Sum of elements divisible by 3 within the interval [" << p << "; " << q << "] = " << sumInRange3(A, n, m, p, q) << endl;
+}
+void input(int arr[][M], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "Element[" << (i + 1) << "][" << (j + 1) << "] = ";
+			cin >> arr[i][j];
+		}
+	}
+}
+void output(int arr[][M], int row, int col)
+{
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << "\t" << arr[i][j];
+		}
+		cout << endl;
+	}
+}
+int prodInRange(int arr[][M], int row, int col, int lowBound, int upBound)
+{
+	int prodVar = 1;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] >= lowBound && arr[i][j] <= upBound) prodVar *= arr[i][j];
+		}
+	}
+	return prodVar;
+}
+int sumInRange3(int arr[][M], int row, int col, int lowBound, int upBound)
+{
+	int sumVar = 0;
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			if (arr[i][j] >= lowBound && arr[i][j] <= upBound && arr[i][j] % 3 == 0) sumVar += arr[i][j];
+		}
+	}
+	return sumVar;
+}
