@@ -1,0 +1,92 @@
+//Task 1
+#include <iostream>
+using namespace std;
+double sumFunc(double, double);
+void main()
+{
+	double num1, num2;
+	cout << "Enter the first number: ";
+	cin >> num1;
+	cout << "Enter the second number: ";
+	cin >> num2;
+	cout << "Their sum = " << sumFunc(num1, num2) << endl;
+}
+double sumFunc(double a, double b)
+{
+	return (a + b);
+}
+
+//Task 2
+#include <iostream>
+using namespace std;
+double addOne(double);
+void main()
+{
+	double num;
+	cout << "Enter a number: ";
+	cin >> num;
+	cout << "The number plus 1 = " << addOne(num) << endl;
+}
+double addOne(double x)
+{
+	return (x + 1);
+}
+
+//Task 3
+#include <iostream>
+using namespace std;
+int countSymbol(char[], char);
+void main()
+{
+	char word[21];
+	char symbol;
+	cout << "Enter a word (no more than 20 characters): ";
+	cin >> word;
+	cout << "Enter the desired symbol: ";
+	cin >> symbol;
+	cout << "The number of times \"" << symbol << "\" appears in \"" << word << "\" = " << countSymbol(word, symbol) << endl;
+}
+int countSymbol(char x[], char letter)
+{
+	int i = 0;
+	int count = 0;
+	while (x[i] != '\0')
+	{
+		if (x[i] == letter) count++;
+		i++;
+	}
+	return count;
+}
+
+//Task 4
+#include <iostream>
+#include <string>
+using namespace std;
+void letterPosition(string, char[]);
+void main()
+{
+	string word;
+	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+	cout << "Enter a word: ";
+	getline(cin, word);
+	cout << "Converting letters into alphabet positions:" << endl;
+	letterPosition(word, alphabet);
+}
+void letterPosition(string x, char y[])
+{
+	int charIndex;
+	for (int i = 0; i < x.length(); i++)
+	{
+		charIndex = 0;
+		while (y[charIndex] != '\0')
+		{
+			if (x[i] == y[charIndex])
+			{
+				cout << (charIndex + 1) << " ";
+				break;
+			}
+			charIndex++;
+		}
+	}
+	cout << endl;
+}
