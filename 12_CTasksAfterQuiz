@@ -1,0 +1,172 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void main()
+{
+	//Made by Konstantin-Asen Yordanov (12/C)
+
+	cout << "Task 1, Page 1:\n===============" << endl;
+	int a, b;
+	cout << "Enter the first integer: ";
+	cin >> a;
+	cout << "Enter the second integer: ";
+	cin >> b;
+	if (a == b) cout << "Triple their sum (since they are equal) = " << (3 * (a + b)) << endl;
+	else cout << "Their sum = " << (a + b) << endl;
+
+	cout << "\nTask 2, Page 1:\n===============" << endl;
+	int n;
+	cout << "Enter an integer: ";
+	cin >> n;
+	int diff = (n - 51);
+	cout << "The absolute difference between " << n << " and 51 = " << abs(diff) << endl;
+
+	cout << "\nTask 3, Page 1:\n===============" << endl;
+	int int1, int2;
+	bool truth;
+	cout << "Enter the first integer: ";
+	cin >> int1;
+	cout << "Enter the second integer: ";
+	cin >> int2;
+	if ((int1 == 30) || (int2 == 30) || ((int1 + int2) == 30))
+	{
+		truth = true;
+		cout << "Result = " << truth << endl;
+	}
+	else
+	{
+		truth = false;
+		cout << "Result = " << truth << endl;
+	}
+
+	cout << "\nTask 1, Page 2:\n===============" << endl;
+	int d;
+	bool within10;
+	cout << "Enter an integer: ";
+	cin >> d;
+	cin.ignore();
+	if ((d >= 90 && d <= 99) || (d >= 101 && d <= 110) || (d >= 190 && d <= 199) || (d >= 201 && d <= 210))
+	{
+		within10 = true;
+		cout << "Result = " << within10 << endl;
+	}
+	else
+	{
+		within10 = false;
+		cout << "Result = " << within10 << endl;
+	}
+
+	cout << "\nTask 2, Page 2:\n===============" << endl;
+	string input, result;
+	cout << "Enter a string:" << endl;
+	getline(cin, input);
+	if ((input[0] == 'i') && (input[1] == 'f')) cout << "The unchanged string = " << input << endl;
+	else
+	{
+		result = "if " + input;
+		cout << "The new string (with \"if\" added at the beginning) = " << result << endl;
+	}
+
+	cout << "\nTask 3, Page 2:\n===============" << endl;
+	string sequence;
+	cout << "Enter a string:" << endl;
+	getline(cin, sequence);
+	swap(sequence[0], sequence[(sequence.size() - 1)]);
+	cout << "New version of the string = " << sequence << endl;
+
+	cout << "\nTask 4, Page 2:\n===============" << endl;
+	int num, mult = 2;
+	cout << "Enter an integer: ";
+	cin >> num;
+	while (mult != num && mult < num) mult *= 2;
+	if (mult == num) cout << "Is " << num << " a power of 2? TRUE" << endl;
+	else cout << "Is " << num << "a power of 2? FALSE" << endl;
+
+	cout << "\nTask 1, Page 3:\n===============" << endl;
+	int number;
+	cout << "Enter a positive integer: ";
+	cin >> number;
+	int persistence = 0;
+	int digitalRoot;
+	int numberLoopOverall = number;
+	int numberLoopDigits;
+	int digitCount;
+	int digitSum;
+	int currentDigit;
+
+	//Single-Digit (in the if-block) vs. Multi-Digit (in the else-block) Numbers
+	if (number < 10)
+	{
+		cout << "Additive Persistence: " << persistence << endl;
+		cout << "Digital root: " << number << endl;
+	}
+	else
+	{
+		do
+		{
+			/*numberLoopDigits is the substitute variable used for counting the digits in the nested do/while loop (between Line 116 and Line 121).
+			It is either equal to number (in the first iteration of the overall do/while loop), or to numberLoopOverall (the result of the previous iteration of the overall do/while loop).*/
+
+			/*numberLoopOverall is the substitute variable used in the overall do/while loop (between Line 105 and Line 135).
+			It is equal to number in the first iteration (from Line 89). Otherwise, it is the result of each subsequent iteration (the number derived from the previous addition of digits).*/
+
+			//Counting Digits
+			numberLoopDigits = numberLoopOverall;
+			digitCount = 1;
+			do
+			{
+				if (numberLoopDigits < 10) break;
+				numberLoopDigits /= 10;
+				digitCount++;
+			} while (numberLoopDigits >= 10);
+
+			//Looping Through Digits
+			digitSum = 0;
+			for (int i = 0; i < digitCount; i++)
+			{
+				currentDigit = (numberLoopOverall % (int)pow(10, i + 1)) / (int)pow(10, i);
+				digitSum += currentDigit;
+			}
+
+			//Preparing Next Iteration
+			numberLoopOverall = digitSum;
+			digitalRoot = digitSum;
+			persistence++;
+		} while (digitSum >= 10);
+		cout << "Additive Persistence: " << persistence << endl;
+		cout << "Digital root: " << digitalRoot << endl;
+	}
+
+	cout << "\nTask 2, Page 3:\n===============" << endl;
+	int divident, divisor;
+	int difference = 0, count = 0;
+	cout << "Enter the divident: ";
+	cin >> divident;
+	cout << "Enter the divisor: ";
+	cin >> divisor;
+	if (divisor != 0)
+	{
+		if (divident == 0) cout << "Result = 0" << endl;
+		else
+		{
+			int posDivident = abs(divident), posDivisor = abs(divisor);
+			while (posDivident >= posDivisor)
+			{
+				difference = posDivident - posDivisor;
+				posDivident = difference;
+				count++;
+			}
+			if ((divident > 0 && divisor > 0) || (divident < 0 && divisor < 0)) cout << "Result = " << count << endl;
+			if (divident < 0 || divisor < 0) cout << "Result = " << (-count) << endl;
+		}
+	}
+	else cout << "Division is impossible! The divisor is 0!" << endl;
+
+	cout << "\nTask 3, Page 3:\n===============" << endl;
+	double base, exponent;
+	cout << "Enter the base: ";
+	cin >> base;
+	cout << "Enter the exponent: ";
+	cin >> exponent;
+	cout << base << " to the power of " << exponent << " = " << pow(base, exponent) << endl;
+}
